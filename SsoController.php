@@ -37,9 +37,10 @@ class SsoController extends Controller
         $result = json_decode($result);
         if($result->code == 200){
             $user = $result->message;
+            //返回值 [$user->userid]  [$user->name]  [$user->mobile]
             //注册$user
             //登录$user
-            return true;
+            return $user;
         }else{
             Yii::$app->response->data =['code' => 0, 'message' => $result->message];
             return false;
