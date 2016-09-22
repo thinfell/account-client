@@ -40,7 +40,7 @@ class SsoController extends Controller
             //返回值 [$user->userid]  [$user->name]  [$user->mobile]
             //注册$user
             //登录$user
-            return $user;
+            return $user->userid;
         }else{
             Yii::$app->response->data =['code' => 0, 'message' => $result->message];
             return false;
