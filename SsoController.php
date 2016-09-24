@@ -21,12 +21,12 @@ class SsoController extends Controller
         $result = Curl::to(Yii::$app->params['sso_website_server'].'/login')->withData(['sso_website_id' => Yii::$app->params['sso_website_id'], 'sign' => $sign, 'timestamp' => $timestamp, 'AuthenTickitRequestParamName' => $AuthenTickitRequestParamName])->get();
         $result = json_decode($result);
         if($result->code == 200){
-            $userid = $result->message;
-			//返回值 [$userid]
-            return Yii::$app->user->login(User::findByUserid($userid), 0);
+		$userid = $result->message;
+	    	//返回值 [$userid]
+	    	return Yii::$app->user->login(User::findByUserid($userid), 0);
         }else{
-            Yii::$app->response->data =['code' => 0, 'message' => $result->message];
-            return false;
+            	Yii::$app->response->data =['code' => 0, 'message' => $result->message];
+        	 return false;
         }
     }
 
